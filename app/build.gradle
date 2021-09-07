@@ -49,7 +49,7 @@ android {
 
 dependencies {
     implementation (baseLibs.bundles.suite)
-    testImplementation (baseLibs.junit)
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation (baseLibs.bundles.android.test)
     debugImplementation (baseLibs.compose.ui.tooling)
 }
