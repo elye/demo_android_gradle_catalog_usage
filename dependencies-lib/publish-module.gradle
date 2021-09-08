@@ -1,0 +1,41 @@
+apply plugin: 'maven-publish'
+
+def releaseRepositoryUrl() {
+    return "http://localhost:8081/repository/maven-releases/"
+}
+
+def getRepositoryUsername() {
+    return "admin"
+}
+
+def getRepositoryPassword() {
+    return "testing"
+}
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // Set the published library info
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+
+                from components.versionCatalog
+            }
+        }
+        repositories {
+            maven {
+                url = uri(releaseRepositoryUrl())
+                setAllowInsecureProtocol(true)
+                credentials {
+                    username = getRepositoryUsername()
+                    password = getRepositoryPassword()
+                }
+            }
+        }
+    }
+}

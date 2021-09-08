@@ -2,6 +2,10 @@ enableFeaturePreview('VERSION_CATALOGS')
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven {
+            setAllowInsecureProtocol(true)
+            url "http://localhost:8081/repository/maven-releases/"
+        }
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
@@ -10,6 +14,10 @@ dependencyResolutionManagement {
     versionCatalogs {
         baseLibs {
 
+            // From Library Toml File
+            // from("io.github.elye:dependencies-lib:1.0.0")
+
+            // From Local Toml File
             from(files('gradle/baseLibs.versions.toml'))
 
             // Direct VersionCatalogs
@@ -37,3 +45,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Compose Central Dependencies Catalog"
 include ':app'
+include ':dependencies-lib'
