@@ -48,5 +48,9 @@ android {
 }
 
 dependencies {
+    // loading it as internal library
     implementation project(":compose-lib")
+    
+    // loading it as external library
+    // implementation 'io.github.elye:compose-sample-lib:1.0.0'
 }

@@ -45,3 +45,11 @@ dependencies {
     androidTestImplementation (baseLibs.bundles.android.test)
     debugImplementation (baseLibs.compose.ui.tooling)
 }
+
+ext {
+    PUBLISH_GROUP_ID = 'io.github.elye'
+    PUBLISH_VERSION = '1.0.0'
+    PUBLISH_ARTIFACT_ID = 'compose-sample-lib'
+}
+
+apply from: "./publish-module.gradle"

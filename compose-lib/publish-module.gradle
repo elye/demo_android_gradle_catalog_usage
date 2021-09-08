@@ -1,0 +1,61 @@
+apply plugin: 'maven-publish'
+
+def releaseRepositoryUrl() {
+    return "http://localhost:8081/repository/maven-releases/"
+}
+
+def getRepositoryUsername() {
+    return "admin"
+}
+
+def getRepositoryPassword() {
+    return "testing"
+}
+
+task androidSourcesJar(type: Jar) {
+    archiveClassifier.set('sources')
+    if (project.plugins.findPlugin("com.android.library")) {
+        from android.sourceSets.main.java.srcDirs
+    } else {
+        from sourceSets.main.java.srcDirs
+    }
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+group = PUBLISH_GROUP_ID
+version = PUBLISH_VERSION
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                // Set the published library info
+                groupId PUBLISH_GROUP_ID
+                artifactId PUBLISH_ARTIFACT_ID
+                version PUBLISH_VERSION
+
+                // Two artifacts, the `aar` (or `jar`) and the sources
+                if (project.plugins.findPlugin("com.android.library")) {
+                    from components.release
+                } else {
+                    from components.java
+                }
+
+                artifact androidSourcesJar
+            }
+        }
+        repositories {
+            maven {
+                url = uri(releaseRepositoryUrl())
+                setAllowInsecureProtocol(true)
+                credentials {
+                    username = getRepositoryUsername()
+                    password = getRepositoryPassword()
+                }
+            }
+        }
+    }
+}
