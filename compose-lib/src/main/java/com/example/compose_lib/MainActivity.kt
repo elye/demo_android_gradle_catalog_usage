@@ -1,4 +1,4 @@
-package com.example.composecentraldependenciescatalog
+package com.example.compose_lib
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.composecentraldependenciescatalog.ui.theme.ComposeCentralDependenciesCatalogTheme
+import com.example.compose_lib.ui.theme.ComposeCentralDependenciesCatalogTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,7 +17,7 @@ class MainActivity : ComponentActivity() {
             ComposeCentralDependenciesCatalogTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    Greeting("Android Compose Lib")
                 }
             }
         }

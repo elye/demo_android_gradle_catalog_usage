@@ -46,3 +46,4 @@ dependencyResolutionManagement {
 rootProject.name = "Compose Central Dependencies Catalog"
 include ':app'
 include ':dependencies-lib'
+include ':compose-lib'
